@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&display=swap');
+*{
+ background-color: black;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Karla', sans-serif;
+
+}
+body{
+  color: #fff;
+}
+.container{
+  width: 100%;
+  height: 100vh;
+   background-image: url(temst.avif); 
+  background-position: center;
+  background-size: cover;
+  padding-top: 35px;
+  padding-left: 8%;
+  padding-right: 8%;
+}
+nav{
+  padding: 10px 0;
+  margin-right: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo a{
+  font-size: 33px;
+  text-decoration: none;
+}
+span{
+  color: #f9004d;
+}
+nav ul li{
+  display: inline-block;
+  font-size: 16px;
+  list-style: none;
+  margin: 10px 30px;
+}
+nav ul li a{
+  text-decoration: none;
+  transition: 0.5s;
+}
+nav ul li a:hover{
+  color: #f9004d;
+}
+
+.content{
+  margin-top: 10%;
+  max-width: 600px;
+}
+.content h2{
+  font-size: 35px
+}
+.content p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 22px;
+  margin-top: 10px;
+  line-height: 25px;
+}
+a{
+  color: #fff;
+}
+
+
+/* Basic sentiment analysis code */
+
+
+.content1{
+    margin-top: 10%;
+    max-width: 600px;
+    margin-left: 750px;
+    text-align: left;
+  }
+  .content1 h2{
+    font-size: 35px
+  }
+  .content1 p{
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 22px;
+    margin-top: 10px;
+    line-height: 25px;
+  }
+  a{
+    color: #fff;
+  }
+  .link1 {
+    margin-top: 30px;
+    width: 150px;
+    margin-left: 750px;
+    text-align: left;
+  }
+  .hire1{ 
+    color: #000;
+    text-decoration: none;
+    background: #fff;
+    padding: 9px 25px;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: 0.5s;
+  
+  }
+  .link1 .hire1:hover{
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+  }
+
+
+  /* real time feed sentiment analysis code */
+
+
+  .content2{
+    margin-top: 10%;
+    max-width: 600px;
+    text-align: left;
+  }
+  .content2 h2{
+    font-size: 35px
+  }
+  .content2 p{
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 22px;
+    margin-top: 10px;
+    line-height: 25px;
+  }
+  a{
+    color: #fff;
+  }
+  .link2 {
+    margin-top: 30px;
+    width: 150px;
+    text-align: left;
+  }
+  .hire2{ 
+    color: #000;
+    text-decoration: none;
+    background: #fff;
+    padding: 9px 25px;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: 0.5s;
+  
+  }
+  .link2 .hire2:hover{
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+  }
+
+

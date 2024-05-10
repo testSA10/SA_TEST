@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@600&display=swap" rel="stylesheet">
+    <title>Sentiment Analysis</title>
+</head>
+<body>
+    <div class="container">
+    <nav>
+        <div class="logo">
+          <a href="newmain.html"><b>SENTIMENT<span> ANALYSIS</span></b></a>
+        </div>
+        <ul>
+          <li><a href="newmain.html">Home</a></li>
+          <li><a href="tpm.html" target="_blank">Basic Sentiment Analysis</a></li>
+          <li><a href="realtime-SA.html" target="_blank">Real Time Feed Sentiment Analysis</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    
+
+    <div id="inputdiv">
+    <textarea cols="120" rows="16" id="inputText" placeholder= " Enter some text:" wrap="physical"></textarea>
+    </div>
+
+    <div id="buttondiv">
+        <button id="analyzeButton">
+            ANALYZE
+        </button>
+    </div>
+
+  
+
+    <div id="headingdiv">
+        <h3 id="sentimentDisplay">
+        </h3>
+    </div>
+</div>
+
+
+    <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&display=swap');
+*{
+ background-color: black;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Karla', sans-serif;
+
+}
+body{
+  color: #fff;
+}
+.container{
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  padding-top: 35px;
+  padding-left: 8%;
+  padding-right: 8%;
+}
+nav{
+  padding: 10px 0;
+  margin-right: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo a{
+  font-size: 33px;
+  text-decoration: none;
+}
+span{
+  color: #f9004d;
+}
+nav ul li{
+  display: inline-block;
+  font-size: 16px;
+  list-style: none;
+  margin: 10px 30px;
+}
+nav ul li a{
+  text-decoration: none;
+  transition: 0.5s;
+}
+nav ul li a:hover{
+  color: #f9004d;
+}
+
+.content{
+  margin-top: 10%;
+  max-width: 600px;
+}
+.content h2{
+  font-size: 35px
+}
+.content p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 22px;
+  margin-top: 10px;
+  line-height: 25px;
+}
+a{
+  color: #fff;
+}
+
+
+
+/* old code */
+
+
+        h1{
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-decoration: solid underline;
+        }
+        #inputdiv{
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            margin-top: 80px;
+            
+        }
+        textarea{
+            background-color: white;
+        }
+        button:hover{
+           /* box-shadow: 2px 2px 2px;
+            transform: translateY(-2px);
+            */
+            cursor: pointer; 
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+
+        }
+        button{
+            height: 75px;
+            width: 150px;
+            font-size: medium;
+            font-weight: bold;
+            color: #000;
+    text-decoration: none;
+    background: #fff;
+    padding: 9px 25px;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: 0.25s;
+          
+        }
+
+        #buttondiv{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2%;
+        }
+        #sentimentDisplay{
+            background-color: black;
+        }
+
+        #headingdiv{
+            margin-left: 530px;
+            margin-top: 50px;
+            font-size: 20px;
+            font-family: 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+        textarea{
+            font-size: 18px;
+        }
+
+
+    </style>
+
+    <script>
+
+document.getElementById('analyzeButton').addEventListener('click', async () => {
+    const textarea = document.getElementById('inputText');
+    const sentimentDisplay = document.getElementById('sentimentDisplay');
+
+    if (!textarea || !sentimentDisplay) {
+        console.error('Textarea or Sentiment Display Element not found.');
+        return;
+    }
+
+    const textareaValue = textarea.value.trim();
+
+    if (textareaValue === '') {
+        console.error('Textarea value is empty.');
+        return;
+    }
+
+    try {
+        const response = await fetch('https://fy7ike3m1h.execute-api.us-east-1.amazonaws.com/ffff', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: textareaValue })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        const body = JSON.parse(result.body);
+        const sentiment = body.sentiment.toUpperCase(); // Ensure sentiment is in uppercase
+
+        let color;
+
+        // Set color based on sentiment
+        switch (sentiment) {
+            case 'POSITIVE':
+                color = 'green';
+                break;
+            case 'NEGATIVE':
+                color = 'red';
+                break;
+            case 'MIXED':
+                color = 'orange';
+                break;
+            case 'NEUTRAL':
+                color = 'yellow';
+                break;
+            default:
+                color = 'black'; // Default color if sentiment is unknown
+        }
+
+        sentimentDisplay.textContent = `Sentiment: ${sentiment}`;
+        sentimentDisplay.style.color = color; // Apply color to the text
+    } catch (error) {
+        console.error('Error sending/receiving API request:', error);
+    }
+});
+
+
+    </script>
+</body>
+</html>
